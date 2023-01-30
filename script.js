@@ -37,7 +37,7 @@ else if(playerSelection === "rock" && computerSelection === "paper"){
 //if playerSelection is Rock & computerSelection is Scissor then return the string: "You Win! Rock beats Scissor"
 else if(playerSelection === "rock" && computerSelection === "scissor"){
     console.log("You Win! Rock beats Scissor");
-    return -1;
+    return 1;
 }
 //if playerSelection is Paper & computerSelection is Rock then return 1 and print the string: "You Win! Paper beats Rock"
 else if(playerSelection === "paper" && computerSelection === "rock"){
@@ -76,7 +76,42 @@ else {
 }
 }
 
+//create a function named playerSelection() that gets input from user through prompt() and return it as a string
+function getPlayerSelection(){
+    return prompt("Write Rock, Paper or Scissor");
+}
 
+//create a function called game(). 
+//Call the playRound function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
+//At this point you should be using console.log() to display the results of each round and the winner at the end.
+//Use prompt() to get input from the user.
+function game(){
+    let computerScore = 0;
+    let userScore = 0;
+    for(let i = 1; i < 6; i++){
+        let thisRound = playRound(getPlayerSelection(), getComputerChoice());
 
-console.log(`computer's choice is: ${getComputerChoice()}`);
-console.log(playRound("Scissor", getComputerChoice()));
+        if(thisRound === 1){
+            userScore++;
+        }else if(thisRound === -1){
+            computerScore++;
+        }
+    }
+
+    if(userScore > computerScore){
+        console.log(`your score is ${userScore}`);
+        console.log(`computer's score is ${computerScore}`);
+        console.log("congrulations! you won the touranment");
+    } else if(userScore < computerScore){
+        console.log(`your score is ${userScore}`);
+        console.log(`computer's score is ${computerScore}`);
+        console.log("you lose the touranment");
+    } else if(userScore === computerScore){
+        console.log(`your score is ${userScore}`);
+        console.log(`computer's score is ${computerScore}`);
+        console.log("touranment is draw");
+    }
+
+}
+
+game();
